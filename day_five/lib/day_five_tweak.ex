@@ -33,7 +33,6 @@ defmodule DayFiveTweak do
   # end
 
   def main do
-    IO.inspect(Function.info(&String.to_integer/1))
     handle_input("input.txt")
   end
 end
