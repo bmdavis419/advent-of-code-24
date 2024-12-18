@@ -1,4 +1,4 @@
-defmodule DayFive do
+defmodule DayFiveTweak do
   def handle_input(path) do
     [rules, manuals] = File.read!(path) |> String.split("\n\n")
 
@@ -9,33 +9,29 @@ defmodule DayFive do
         {String.to_integer(left), String.to_integer(right)}
       end)
 
-    # Add debug before processing manuals
-    IO.puts("\nDebug before manuals processing:")
-    IO.inspect(binding(), label: "Current bindings")
-    IO.inspect(Process.info(self(), :dictionary), label: "Process dictionary")
-
     manuals =
       String.split(manuals, "\n")
-      |> tap(fn lines -> IO.inspect(lines, label: "After initial split") end)
       |> Enum.map(fn manual ->
         String.split(manual, ",")
-        |> tap(fn entries -> IO.inspect(entries, label: "Line splits") end)
         |> Enum.map(fn entry ->
-          # Add more debug info
-          IO.inspect(entry, label: "About to parse")
-          IO.inspect(Process.info(self(), :dictionary), label: "Dict before parse")
-          result = String.to_integer(entry)
-          IO.inspect(result, label: "Parse result")
-          result
+          String.to_integer(String.trim(entry))
         end)
       end)
 
     {rules, manuals}
   end
 
+  # def check_order(first_entry, second_entry, [cur_rule | rest_rules]) do
+  # end
+
+  def check_manual([]), do: true
+
+  def check_manual([first | rest], rules) do
+  end
+
   def main do
-    IO.puts("Starting main")
-    IO.inspect(Process.info(self(), :dictionary), label: "Process dict at start")
-    handle_input("input.txt")
+    {rules, manuals} = handle_input("input.txt")
+
+    check_manual(hd(manuals), rules)
   end
 end

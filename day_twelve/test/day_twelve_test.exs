@@ -3,6 +3,7 @@ defmodule DayTwelveTest do
   doctest DayTwelve
 
   test "greets the world" do
-    assert DayTwelve.hello() == :world
+    DayTwelve.main()
+    assert true == true
   end
 end

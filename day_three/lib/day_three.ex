@@ -1,8 +1,4 @@
 defmodule DayThree do
-  @moduledoc """
-  Documentation for `DayThree`.
-  """
-
   def handle_numbers([")" | tail], false, first_num, second_num),
     do: {String.to_integer(first_num) * String.to_integer(second_num), tail}
 
